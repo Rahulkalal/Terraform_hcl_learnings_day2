@@ -29,13 +29,14 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: Initialize Terraform
+    # Step 4: Initialize Terraform
+    - name: Terraform Init
       run: terraform init
 
-    - name: Run Terraform Plan
-      run: terraform plan
+    # Step 5: Validate Terraform configuration
+    - name: Terraform Validate
+      run: terraform validate
 
-    - name: Apply Terraform
+    # Step 6: Apply Terraform configuration
+    - name: Terraform Apply
       run: terraform apply -auto-approve
-      env:
-        TF_VAR_example: ${{ secrets.TF_VAR_example }}
